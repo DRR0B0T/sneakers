@@ -109,15 +109,13 @@ header{
   .items{
     overflow: auto;
     margin-bottom: 40px;
+    flex: 1;
   }
   h2{
     margin: 0;
   }
 }
-.items {
-  flex: 1;
 
-}
 .cartTotalBlock{
  ul {
    display: block;
