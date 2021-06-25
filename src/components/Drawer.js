@@ -1,41 +1,32 @@
 import React from 'react';
 
-export const Drawer = (props) => {
+export const Drawer = ({ items, onClose, }) => {
   return (
     <div  className="overlay">
     <div className="drawer">
       <h2 className='mb-30 d-flex justify-between mb-30 '>Корзина<img
-        onClick={props.onClose}
+        onClick={onClose}
         className='removeBth cu-p'
         src="/img/btn-remove.svg"
         alt="Remove"/></h2>
       <div className="items">
-        <div className="cartItem d-flex align-center mb-20">
-          <div style={{backgroundImage: 'url(/img/sneakers/1.jpg)'}} className="cartItemImg d-flex">
-
-          </div>
-          <div className='mr-20'>
-            <p className='mb-5'>Мужские Кроссовки Nike Air Max 270</p>
-            <b>12 999 руб.</b>
-          </div>
-          <img
-            className='removeBth'
-            src="/img/btn-remove.svg"
-            alt="Remove"/>
-        </div>
-        <div className="cartItem d-flex align-center mb-20">
-          <div style={{backgroundImage: 'url(/img/sneakers/1.jpg)'}} className="cartItemImg d-flex">
-
-          </div>
-          <div className='mr-20'>
-            <p className='mb-5'>Мужские Кроссовки Nike Air Max 270</p>
-            <b>12 999 руб.</b>
-          </div>
-          <img
-            className='removeBth'
-            src="/img/btn-remove.svg"
-            alt="Remove"/>
-        </div>
+        {
+          items.map((obj)=>(
+            <div className="cartItem d-flex align-center mb-20">
+              <div style={{backgroundImage: `url(${obj.imageUrl})`}}
+                   className="cartItemImg d-flex">
+              </div>
+              <div className='mr-20 flex'>
+                <p className='mb-5'>{obj.title}</p>
+                <b>{obj.price} руб.</b>
+              </div>
+              <img
+                className='removeBth'
+                src="/img/btn-remove.svg"
+                alt="Remove"/>
+            </div>
+          ))
+        }
       </div>
       <div className='cartTotalBlock'>
         <ul >

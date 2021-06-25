@@ -84,15 +84,15 @@ header{
   box-shadow: -10px 4px 24px (0,0,0,0.1);
   padding: 30px;
   .items{
+    flex: 1;
     overflow: auto;
     margin-bottom: 40px;
-    flex: 1;
   }
   h2{
     margin: 0;
   }
 }
-
+.items{flex:1;}
 .cartTotalBlock{
  ul {
    display: block;
