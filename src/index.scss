@@ -91,7 +91,7 @@ header{
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -109,16 +109,18 @@ header{
   height: 100%;
   box-shadow: -10px 4px 24px (0,0,0,0.1);
   padding: 30px;
+  overflow: auto;
+
   .items{
     flex: 1;
-    overflow: auto;
     margin-bottom: 40px;
+
   }
   h2 {
     margin: 0;
   }
 }
-.items{flex:1;}
+
 .cartTotalBlock{
  ul {
    display: block;
