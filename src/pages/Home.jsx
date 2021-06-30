@@ -8,21 +8,19 @@ export const Home = ({
     onChangeSearchInput,
     onAddToFavorite,
     onAddToCart,
-    cartItems,
      isLoading}) =>
     {
 
-    const  renderItems = () => {
-      const filterItems = items.filter((item)=>
-        item.title.toLowerCase().includes(searchValue.toLowerCase())
-      )
-       return (
+    const renderItems = () => {
+      const filterItems = items.filter((item)=> item.title.toLowerCase().includes(searchValue.toLowerCase()))
+
+      return (
          isLoading
            ? [...Array(8)]
            : filterItems).map((item) => (<Card
+                key={item && item.id}
                 onFavorite={(obj) => onAddToFavorite(obj)}
                 onPlus={(obj)=>onAddToCart(obj)}
-                idAdded={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
                 loading={isLoading}
                 {...item}
               />)

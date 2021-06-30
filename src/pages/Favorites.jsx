@@ -2,8 +2,8 @@ import {Card} from "../components/Card";
 import { AppContext } from "../App";
 import React from "react"
 
-export const Favorites = ({  onAddToFavorite  }) => {
-  const state = React.useContext(AppContext)
+export const Favorites = () => {
+  const { favorites, onAddToFavorite } = React.useContext(AppContext)
 
   return (
     <div className='content p-40'>
@@ -12,7 +12,7 @@ export const Favorites = ({  onAddToFavorite  }) => {
       </div>
       <div className="d-flex flex-wrap">
         {
-          [].map((item) => (
+          favorites.map((item) => (
               <Card
                 key={item.id}
                 favorited={true}

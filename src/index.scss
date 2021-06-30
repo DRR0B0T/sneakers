@@ -1,15 +1,11 @@
 
-body {
+ body {
   margin: 0;
   font-family: system-ui;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   background-color: #e7f6ff;
+  height: 100%;
 }
 
-* {
-  font-family: system-ui;
-}
 
 .wrapper{
   background:#ffffff;
@@ -36,7 +32,33 @@ header{
   }
 }
 
+ .cartEmpty {
+   text-align: center;
 
+   p {
+     width: 280px;
+     line-height: 24px;
+   }
+
+   .greenButton {
+     width: 245px;
+     margin-top: 20px;
+
+     &:hover {
+       img {
+         transform: rotate(180deg) translateX(3px);
+       }
+     }
+
+     img {
+       position: relative;
+       top: 1px;
+       transform: rotate(180deg);
+       margin-right: 15px;
+       transition: transform 0.15s ease-in-out;
+     }
+   }
+ }
 
 .button {
   background: #ffffff;
@@ -90,36 +112,44 @@ header{
   }
 }
 
-.overlay {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.1);
-  z-index: 1;
-}
-.drawer {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 420px;
-  background: #ffffff;
-  right: 0;
-  height: 100%;
-  box-shadow: -10px 4px 24px (0,0,0,0.1);
-  padding: 30px;
-  overflow: auto;
+ .overlay {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   z-index: 1;
+ }
 
-  .items{
-    flex: 1;
-    margin-bottom: 40px;
+ .drawer {
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   width: 420px;
+   height: 100%;
+   right: 0;
+   background: #ffffff;
+   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+   padding: 30px;
+   //правка для корзины
+   overflow: auto;
+   -ms-overflow-style: none;
+   &::-webkit-scrollbar {
+       width: 0;
+       height: 0;
+     }
 
-  }
-  h2 {
-    margin: 0;
-  }
-}
+
+   .items {
+     flex: 1;
+     margin-bottom: 40px;
+   }
+
+   h2 {
+     margin: 0;
+   }
+ }
 
 .cartTotalBlock{
  ul {
@@ -143,6 +173,11 @@ header{
  }
   .greenButton{
     position: relative;
+
+    &:disabled  {
+      animation: button-loading 0.7s ease-in-out infinite;
+    }
+
     &:hover{
       img{
         transform: translateX(5px);
@@ -167,6 +202,11 @@ header{
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s ease-in-out;
+
+  &:disabled  {
+    background-color: #bebebe !important;
+    cursor: default;
+  }
     &:hover{
       background: lighten( #9DD558, 5%);
     }
@@ -206,3 +246,14 @@ header{
     }
   }
 }
+ @keyframes button-loading {
+   0% {
+     opacity: 1;
+   }
+   50% {
+     opacity: 0.7;
+   }
+   100% {
+     opacity: 1;
+   }
+ }
