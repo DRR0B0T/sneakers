@@ -1,11 +1,12 @@
 import React from "react";
 import {Home} from "./pages/Home";
 import {Header} from "./components/Header";
-import {Drawer} from "./components/Drawer";
+import {Drawer} from "../src/components/Drawer/index";
 import {Route} from 'react-router-dom'
 
 import axios from 'axios'
 import {Favorites} from "./pages/Favorites";
+import {Orders} from "./pages/Orders";
 
 export const AppContext = React.createContext({})
 
@@ -81,15 +82,17 @@ function App() {
       favorites,
       items,
       onAddToFavorite,
+      onAddToCart,
       setCartOpened,
       setCartItems
     }}>
       <div className="wrapper clear">
-        {cartOpened && <Drawer
+        <Drawer
           items={cartItems}
           onClose={() => setCartOpened(false)}
           onRemove={onRemoveItem}
-        />}
+          opened={cartOpened}
+        />
         <Header onClickCart={() => setCartOpened(true)}/>
         <Route path='/' exact>
         <Home
@@ -105,6 +108,10 @@ function App() {
         </Route>
         <Route path='/favorites'>
           <Favorites />
+        </Route>
+
+        <Route path='/orders'>
+          <Orders />
         </Route>
       </div>
     </AppContext.Provider>

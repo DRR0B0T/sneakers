@@ -46,9 +46,9 @@ loading=false,
           <rect x="117" y="141" rx="8" ry="8" width="32" height="32" />
         </ContentLoader>) : (
           <>
-            <div  onClick={onClickFavorite}  className={styles.favorite}>
+            {onFavorite && <div  onClick={onClickFavorite}  className={styles.favorite}>
               <img  src={favorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"  } alt="unlike"/>
-            </div>
+            </div>}
             <img width={133} height={112} src={imageUrl} alt=""/>
             <h5>{title}</h5>
             <div className='d-flex justify-between'>
@@ -56,11 +56,11 @@ loading=false,
                 <span>Цена:</span>
                 <b>{price} руб.</b>
               </div>
-              <img
+              {onPlus && <img
                 className={styles.plus}
                 onClick={handleClickPlus}
                 src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
-                alt="Plus"/>
+                alt="Plus"/>}
             </div>
           </>
         )

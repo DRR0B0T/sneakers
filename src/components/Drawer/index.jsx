@@ -1,12 +1,16 @@
 import React from 'react';
-import {Info} from "./Info";
-import {AppContext} from "../App";
 import axios from "axios";
+
+import {Info} from "../Info";
+import {useCart} from "../../hooks/useCart";
+
+import styles from './Drawer.module.scss'
+
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-export const Drawer = ({ items= [], onClose, onRemove }) => {
-  const {cartItems, setCartItems} = React.useContext(AppContext);
+export const Drawer = ({ items= [], onClose, onRemove, opened }) => {
+  const { cartItems, setCartItems, price} = useCart()
   const [isCompleteOrdered, setIsCompleteOrdered] = React.useState(false);
   const [orderId, setOrderId] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -23,7 +27,7 @@ export const Drawer = ({ items= [], onClose, onRemove }) => {
 
       for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i]
-        await axios.delete('https://60d381a961160900173c93d6.mockapi.io/cart' + item.id)
+        await axios.delete('https://60d381a961160900173c93d6.mockapi.io/cart/' + item.id)
         await delay(1000)
       }
     } catch (e){
@@ -33,8 +37,8 @@ export const Drawer = ({ items= [], onClose, onRemove }) => {
   }
 
   return (
-    <div  className="overlay">
-    <div className="drawer">
+    <div  className={`${styles.overlay} ${opened ? 'styles.overlayVisible' : ''}`}>
+    <div className={styles.drawer}>
       <h2 className='d-flex justify-between mb-30 '>Корзина<img
         onClick={onClose}
         className='removeBth cu-p'
@@ -69,12 +73,12 @@ export const Drawer = ({ items= [], onClose, onRemove }) => {
                   <li>
                     <span>Итого:</span>
                     <div></div>
-                    <b>21 498 руб.</b>
+                    <b>{price} руб.</b>
                   </li>
                   <li>
                     <span>Налог 5%:</span>
                     <div></div>
-                    <b>1074 руб.</b>
+                    <b>{(price / 100 * 5).toFixed(2)} руб.</b>
                   </li>
                 </ul>
                 <button

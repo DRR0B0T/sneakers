@@ -16,8 +16,9 @@ export const Home = ({
 
       return (
          isLoading
-           ? [...Array(8)]
-           : filterItems).map((item) => (<Card
+           ? [...Array(10)]
+           : filterItems).map((item) => (
+             <Card
                 key={item && item.id}
                 onFavorite={(obj) => onAddToFavorite(obj)}
                 onPlus={(obj)=>onAddToCart(obj)}
