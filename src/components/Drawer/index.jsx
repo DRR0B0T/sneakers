@@ -37,7 +37,7 @@ export const Drawer = ({ items= [], onClose, onRemove, opened }) => {
   }
 
   return (
-    <div  className={`${styles.overlay} ${opened ? 'styles.overlayVisible' : ''}`}>
+    <div  className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
     <div className={styles.drawer}>
       <h2 className='d-flex justify-between mb-30 '>Корзина<img
         onClick={onClose}
@@ -48,7 +48,7 @@ export const Drawer = ({ items= [], onClose, onRemove, opened }) => {
         items.length > 0
           ? (
             <div className='d-flex flex-column flex'>
-              <div className="items">
+              <div className="items flex">
                 {
                   items.map((obj)=>(
                     <div key={obj.id} className="cartItem d-flex align-center mb-20">
@@ -78,7 +78,7 @@ export const Drawer = ({ items= [], onClose, onRemove, opened }) => {
                   <li>
                     <span>Налог 5%:</span>
                     <div></div>
-                    <b>{(price / 100 * 5).toFixed(2)} руб.</b>
+                    <b>{((price / 100) * 5).toFixed(2)} руб.</b>
                   </li>
                 </ul>
                 <button

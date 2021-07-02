@@ -15,14 +15,14 @@ loading=false,
                      }) => {
   const [favorite, setFavorite] = React.useState(favorited);
   const { isItemAdded } = React.useContext(AppContext)
-
+  const object = { id, parentId: id, title, imageUrl, price }
 
   const handleClickPlus = () => {
-    onPlus({ id, title, imageUrl, price })
+    onPlus(object)
   }
 
   const onClickFavorite = () => {
-    onFavorite({  id, title, imageUrl, price })
+    onFavorite(object)
     setFavorite(!favorite)
   }
 

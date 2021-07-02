@@ -1,12 +1,10 @@
 import {Card} from "../components/Card";
 import React from "react"
 import axios from "axios";
-import {AppContext} from "../App";
 
 export const Orders = () => {
   const [orders, setOrders] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const {onAddToFavorite, onAddToCart} = React.useContext(AppContext)
 
   React.useEffect( () => {
     (async () => {
@@ -31,7 +29,7 @@ export const Orders = () => {
       <div className="d-flex flex-wrap">
         {
           (isLoading
-            ? [...Array(10)]
+            ? [...Array(12)]
             : orders).map((item) => (
             <Card
               key={item && item.id}

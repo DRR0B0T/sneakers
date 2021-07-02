@@ -16,7 +16,7 @@ export const Home = ({
 
       return (
          isLoading
-           ? [...Array(10)]
+           ? [...Array(12)]
            : filterItems).map((item) => (
              <Card
                 key={item && item.id}
